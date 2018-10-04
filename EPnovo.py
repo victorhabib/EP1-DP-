@@ -50,9 +50,11 @@ while x != 0:
                 print("Você selecionou a opção: Adicionar Comanda")
                 numcomanda = int(input("Qual o número da mesa?"))
                 print("\n")
-                dicdecomandas[numcomanda] = comanda
-                
-                print("Comanda Adicionada.")
+                if numcomanda not in dicdecomandas:
+                    dicdecomandas[numcomanda] = comanda
+                    print("Comanda Adicionada.")
+                else:
+                    print("Mesa {0} já se encontra cadastrada no sistema".format(numcomanda))
                 print("Você voltou para o Menu de Comandas")
                 print("\n")
                 print("Menu de Comandas")
@@ -65,13 +67,17 @@ while x != 0:
                 
             if z == 2:
                 print("Você selecionou a opção: Remover Comanda")
+                print("Mesas cadastradas:")
                 for e in dicdecomandas:
                     print(e)
                 numcomanda = int(input("Qual o número da mesa?"))
+                if numcomanda not in dicdecomandas:
+                    print("Mesa não encontrada")
+                else:
+                    del dicdecomandas[numcomanda]
+                    print("Mesa {0} deletada".format(numcomanda))
+                    print("Comanda Removida.")
                 print("\n")
-                del dicdecomandas[numcomanda]
-                
-                print("Comanda Removida.")
                 print("Você voltou para o Menu de Comandas")
                 print("\n")
                 print("Menu de Comandas")
@@ -84,6 +90,9 @@ while x != 0:
                 
             if z == 3:
                 print("Você selecionou a opção: Acessar Comanda")
+                print("Mesas cadastradas:")
+                for e in dicdecomandas:
+                    print(e)
                 numcomanda = int(input("Qual o número da mesa a ser acessada?"))
                 
                 if numcomanda not in dicdecomandas:
@@ -162,18 +171,20 @@ while x != 0:
                         elif e == 3:
                             print("Você selecionou a opção Remover Item.")
                             produto2 = input("Qual o nome do item a ser removido?")
-                            quantidade2 = int(input("Qual a quantidade a ser removida?"))
-                            
-                            while quantidade2 < 0 or quantidade2 > comanda[produto]:
-                                if quantidade2 > comanda[produto2]:
-                                    print("Não é possível remover quantidade maior do que a quantidade presente na comanda.")
-                                    print("O máximo a ser removido: {}".format(comanda[produto]))
-                                    
-                                else:
-                                    print("Não é possível remover quantidade negativa.")
+                            if produto2 not in comanda:
+                                print("Produto não encontrado nesta comanda")
+                            else:
                                 quantidade2 = int(input("Qual a quantidade a ser removida?"))
+                                while quantidade2 < 0 or quantidade2 > comanda[produto]:
+                                    if quantidade2 > comanda[produto2]:
+                                        print("Não é possível remover quantidade maior do que a quantidade presente na comanda.")
+                                        print("O máximo a ser removido: {}".format(comanda[produto]))
+                                    
+                                    else:
+                                        print("Não é possível remover quantidade negativa.")
+                                    quantidade2 = int(input("Qual a quantidade a ser removida?"))
                                 
-                            comanda[produto2] -= quantidade2
+                                comanda[produto2] -= quantidade2
                             print("\n")
                             print("Comanda Eletrônica")
                             print("0 - Sair da Comanda Eletrônica")
@@ -193,9 +204,10 @@ while x != 0:
                                 for h in comanda:
                                     precosomaprod = cardapio[h] * comanda[h]
                                     precototalcomanda += precosomaprod
-                                    print("{0}, quantidade: {1}".format(h, comanda[h]))
-                                    print("Preço unitário: {0:.2f}".format(cardapio[h]))
-                                    print("Preço total dos produtos: {1:.2f} reais".format(h, precosomaprod))
+                                    print("{0}:".format(h))
+                                    print("\tQuantidade: {0}".format(comanda[h]))
+                                    print("\tPreço unitário: {0:.2f}".format(cardapio[h]))
+                                    print("\tPreço total dos produtos: {0:.2f} reais".format(precosomaprod))
                                     print("\n")
                                 print("Preço total da comanda: {0:.2f} reais".format(precototalcomanda))
                                 print("Preço total da comanda (c/ 10%): {0:.2f} reais".format(precototalcomanda*1.1))
@@ -262,9 +274,10 @@ while x != 0:
     elif x == 3:
         print("Você escolheu a opção 3: Adicionar Item ao Cardápio")
         item1 = input('Qual o item a ser adicionado no cardápio?')
-        item1preco = float(input('Qual o preço unitário do item?'))
+        
         
         if item1 not in cardapio:
+            item1preco = float(input('Qual o preço unitário do item?'))
             cardapio[item1] = item1preco
             print("\n")
             print("Menu Inicial")
@@ -310,7 +323,11 @@ while x != 0:
     elif x == 4:
         print("Você escolheu a opção 4: Remover Item do Cardápio")
         item1 = input('Qual o item a ser removido do cardápio?')
-        del cardapio[item1]
+        if item1 not in cardapio:
+            print("Produto não se encontra no cardápio")
+        else:
+            del cardapio[item1]
+            print("{0} não se encontra mais no cardápio".format(item1))
         print("\n")
         print("Menu Inicial")
         print("0 - Sair do Menu Principal")
@@ -324,8 +341,12 @@ while x != 0:
     elif x == 5:
         print("Você escolheu a opção 5: Alterar preço de item do cardápio")
         item1 = input('Qual o item a ser alterado?')
-        item1preconovo = float(input('Qual o novo preço unitário do item?'))
-        cardapio[item1] = item1preconovo
+        if item1 not in cardapio:
+            print("Produto não se encontra no cardápio")
+        else:
+            item1preconovo = float(input('Qual o novo preço unitário do item?'))
+            cardapio[item1] = item1preconovo
+            print("Novo preço de {0}: {1:.2f}".format(item1, item1preconovo))
         print("\n")
         print("Menu Inicial")
         print("0 - Sair do Menu Principal")
