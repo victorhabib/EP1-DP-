@@ -1,0 +1,16 @@
+{
+    "cardapio": {
+        "A\u00e7a\u00ed": 11.9,
+        "Nescau": 4.5,
+        "Sandu\u00edche": 12.0,
+        "Suco": 6.2,
+        "Toddy": 4.8
+    },
+    "dicdecomandas": {
+        "2": {
+            "Nescau": 2.0,
+            "Toddy": 6.0
+        },
+        "4": {}
+    }
+}
