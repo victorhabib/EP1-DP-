@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Sep 11 16:06:46 2018
+Created on Wed Oct  3 23:41:29 2018
 
-@author: Lipe e Bib
+@author: VICTOR HABIB
 """
 
 import json
@@ -282,6 +282,9 @@ while x != 0:
         
         if item1 not in dicionario_tudo["cardapio"]:
             item1preco = float(input('Qual o preço unitário do item?'))
+            while item1preco <=0:
+                print("Valor precisa ser positivo")
+                item1preco = float(input('Qual o preço unitário do item?'))                            
             dicionario_tudo["cardapio"][item1] = item1preco
             print("\n")
             print("Menu Inicial")
@@ -369,16 +372,3 @@ with open("arquivo_ep.json" , "w") as saida:
 
 with open("arquivo_ep.json", "w") as entrada:
     entrada.write(json.dumps(dicionario_tudo, sort_keys=True, indent=4)) 
-
-
-
-
-
-
-
-
-
-
-
-
-
