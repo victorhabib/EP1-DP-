@@ -40,7 +40,7 @@ while x != 0:
             
             if z == 1:
                 print("Você selecionou a opção: Adicionar Comanda")
-                numcomanda = int(input("Qual o número da mesa?"))
+                numcomanda = input("Qual o número da mesa?")
                 print("\n")
                 if numcomanda not in dicionario_tudo["dicdecomandas"]:
                     dicionario_tudo["dicdecomandas"][numcomanda] = {}
@@ -62,7 +62,7 @@ while x != 0:
                 print("Mesas cadastradas:")
                 for e in dicionario_tudo["dicdecomandas"]:
                     print(e)
-                numcomanda = int(input("Qual o número da mesa?"))
+                numcomanda = input("Qual o número da mesa?")
                 if numcomanda not in dicionario_tudo["dicdecomandas"]:
                     print("Mesa não encontrada")
                 else:
@@ -85,7 +85,7 @@ while x != 0:
                 print("Mesas cadastradas:")
                 for e in dicionario_tudo["dicdecomandas"]:
                     print(e)
-                numcomanda = int(input("Qual o número da mesa a ser acessada?"))
+                numcomanda = input("Qual o número da mesa a ser acessada?")
                 
                 if numcomanda not in dicionario_tudo["dicdecomandas"]:
                     print("A mesa não está no sistema.")
